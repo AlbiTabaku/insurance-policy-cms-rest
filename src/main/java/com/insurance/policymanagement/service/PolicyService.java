@@ -157,11 +157,6 @@ public class PolicyService {
     }
 
     private String generateUniquePolicyNumber() {
-        String policyNumber;
-        do {
-            policyNumber = NumberGenerator.generatePolicyNumber();
-        } while (policyRepository.existsByPolicyNumber(policyNumber));
-
-        return policyNumber;
+        return NumberGenerator.generatePolicyNumber();
     }
 }

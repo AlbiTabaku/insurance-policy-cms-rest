@@ -1,21 +1,23 @@
 package com.insurance.policymanagement.util;
 
 import java.time.Year;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class NumberGenerator {
-    
-    private static final Random random = new Random();
-    
+
     public static String generatePolicyNumber() {
-        int currentYear = Year.now().getValue();
-        int randomNumber = 100000 + random.nextInt(900000); // 6-digit random number
-        return String.format("POL-%d-%06d", currentYear, randomNumber);
+        return generate("POL");
     }
-    
+
     public static String generateClaimNumber() {
-        int currentYear = Year.now().getValue();
-        int randomNumber = 100000 + random.nextInt(900000); // 6-digit random number
-        return String.format("CLM-%d-%06d", currentYear, randomNumber);
+        return generate("CLM");
+    }
+
+    private static String generate(String prefix) {
+        int year = Year.now().getValue();
+        long timestamp = System.currentTimeMillis();
+        int random = ThreadLocalRandom.current().nextInt(100, 1000);
+
+        return String.format("%s-%d-%d-%03d", prefix, year, timestamp, random);
     }
 }
