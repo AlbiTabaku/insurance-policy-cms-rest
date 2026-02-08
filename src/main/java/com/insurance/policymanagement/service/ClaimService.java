@@ -28,7 +28,7 @@ public class ClaimService {
 
     @Transactional
     public ClaimResponseDTO submitClaim(ClaimRequestDTO requestDTO) {
-        log.info("Submitting new claim for policy id: {}", requestDTO.getPolicyId());
+        log.info("Processing new claim for policy id: {}", requestDTO.getPolicyId());
         
         // get policy record
         Policy policy = policyRepository.findById(requestDTO.getPolicyId())
@@ -137,11 +137,7 @@ public class ClaimService {
     }
 
     private String generateUniqueClaimNumber() {
-        String claimNumber;
-        do {
-            claimNumber = NumberGenerator.generateClaimNumber();
-        } while (claimRepository.existsByClaimNumber(claimNumber));
-        
-        return claimNumber;
+        return NumberGenerator.generateClaimNumber();
     }
+
 }

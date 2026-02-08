@@ -59,7 +59,7 @@ public class PolicyController {
     // Method to get all the policies
     @GetMapping
     @Operation(summary = "Get all policies with pagination and filtering",
-            description = "Retrieves insurance policies with optional pagination and filtering by customer email, policy number, status, and type etc.")
+            description = "Retrieves insurance policies with optional pagination and filtering by customer email, policy number.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Policies retrieved successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid pagination parameters")

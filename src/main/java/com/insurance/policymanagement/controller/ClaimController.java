@@ -12,20 +12,26 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/claims")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @Tag(name = "Claim Management", description = "APIs for managing insurance claims")
 public class ClaimController {
     
     private final ClaimService claimService;
 
-    // Method to submit a Claim
-    @PostMapping
+
+    @PostMapping(path = "/claims")
     @Operation(summary = "Submit a new claim", description = "Submits a new insurance claim against a policy")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Claim submitted successfully"),
@@ -34,12 +40,11 @@ public class ClaimController {
         @ApiResponse(responseCode = "409", description = "Business rule violation")
     })
     public ResponseEntity<ClaimResponseDTO> submitClaim(@Valid @RequestBody ClaimRequestDTO requestDTO) {
-        ClaimResponseDTO response = claimService.submitClaim(requestDTO);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(claimService.submitClaim(requestDTO), HttpStatus.CREATED);
     }
 
     // Method to get a Claim
-    @GetMapping("/{id}")
+    @GetMapping("/claims/{id}")
     @Operation(summary = "Get claim by ID", description = "Get claim by its ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Claim found"),
@@ -51,7 +56,7 @@ public class ClaimController {
     }
 
     // Method to get a Claim by a policyId
-    @GetMapping("/policy/{policyId}")
+    @GetMapping("/policies/{policyId}/claims")
     @Operation(summary = "Get claims by policy ID", description = "Get all claims for specific policy")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Claims retrieved successfully"),
@@ -63,7 +68,7 @@ public class ClaimController {
     }
 
     // Method to update the status of  Claim
-    @PatchMapping("/{id}/status")
+    @PatchMapping("/claims/{id}/status")
     @Operation(summary = "Update claim status", description = "Approves or rejects a claim")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Claim status updated successfully"),
