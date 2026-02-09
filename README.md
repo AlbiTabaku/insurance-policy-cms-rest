@@ -57,7 +57,7 @@ psql postgres
 Then run:
 ```sql
 CREATE DATABASE insurance_db;
-CREATE USER postgres WITH PASSWORD 'Albi1902';
+CREATE USER postgres WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE insurance_db TO postgres;
 \q
 ```
