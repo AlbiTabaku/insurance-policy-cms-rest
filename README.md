@@ -66,8 +66,8 @@ GRANT ALL PRIVILEGES ON DATABASE insurance_db TO postgres;
 
 Database config is in `src/main/resources/application.properties`:
 ```properties
-spring.datasource.username=postgres
-spring.datasource.password=Albi1902
+spring.datasource.username=postgres (ENV VAR)
+spring.datasource.password=postgres (ENV VAR)
 ```
 
 Change these if you used different credentials.
