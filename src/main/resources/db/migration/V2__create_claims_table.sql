@@ -3,7 +3,7 @@
 
 CREATE TABLE claims (
     id BIGSERIAL PRIMARY KEY,
-    claim_number VARCHAR(20) UNIQUE NOT NULL,
+    claim_number VARCHAR(40) UNIQUE NOT NULL,
     policy_id BIGINT NOT NULL,
     description VARCHAR(500) NOT NULL,
     claim_amount DECIMAL(15, 2) NOT NULL CHECK (claim_amount > 0),

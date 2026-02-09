@@ -25,7 +25,7 @@ public class Claim {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "claim_number", unique = true, nullable = false, length = 20)
+    @Column(name = "claim_number", unique = true, nullable = false, length = 40)
     private String claimNumber;
     
     @ManyToOne(fetch = FetchType.LAZY)

@@ -25,7 +25,7 @@ public class Policy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "policy_number", unique = true, nullable = false, length = 20)
+    @Column(name = "policy_number", unique = true, nullable = false, length = 40)
     private String policyNumber;
     
     @NotBlank(message = "Customer name is required")

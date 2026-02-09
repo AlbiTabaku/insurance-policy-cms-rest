@@ -3,7 +3,7 @@
 
 CREATE TABLE policies (
     id BIGSERIAL PRIMARY KEY,
-    policy_number VARCHAR(20) UNIQUE NOT NULL,
+    policy_number VARCHAR(40) UNIQUE NOT NULL,
     customer_name VARCHAR(100) NOT NULL,
     customer_email VARCHAR(100) NOT NULL,
     policy_type VARCHAR(20) NOT NULL,
